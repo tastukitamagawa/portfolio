@@ -8,7 +8,7 @@ use App\Http\Controllers\GuestLoginController;
 // トップページの表示
 Route::get('/', function () {
     return view('index');
-});
+})->middleware('auth');
 
 // 単語ページの表示
 Route::get('/words', function () {
