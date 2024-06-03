@@ -21,9 +21,6 @@
         <h1 class="title">@yield('title')</h1>
     </header>
     <main>
-        @if (session('register_success'))
-            <p class="alert-message">{{session('register_success')}}</p>
-        @endif
         <div class="container">
             <div class="container__inner">
                 <div class="content-wrap">

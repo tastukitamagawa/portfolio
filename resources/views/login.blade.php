@@ -5,6 +5,12 @@
 @section('content')
     <div class="login-container">
         <h2 class="login-container__title text--ja">ログイン</h2>
+        @if (session('register_success'))
+            <p class="alert-message">{{session('register_success')}}</p>
+        @endif
+        @if ($errors->has('email'))
+            <p class="login-error">{{$errors->first('email')}}</p>
+        @endif
         <form action="{{route('login.login')}}" method="POST" class="login-form">
             @csrf
             <label class="login-form__input-wrap" for="">

@@ -401,3 +401,16 @@ textarea.word-register-form__input{
 .guest-login__button{
     margin: auto;
 }
+
+.alert-message,
+.login-error{
+    margin-top: 40px;
+    padding: 20px 15px;
+    border: 3px solid #000000;
+    font-size: 1rem;
+}
+
+.login-error{
+    border-color: red;
+    color: red;
+}
