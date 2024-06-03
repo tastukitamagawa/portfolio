@@ -35,8 +35,8 @@ Route::get('/profile-update', function () {
 });
 
 // ログイン
-// Route::get('/login', [LoginController::class, 'create'])->name('login');
-// Route::post('login', [LoginController::class, 'login']);
+Route::get('/login', [LoginController::class, 'create']);
+Route::post('login', [LoginController::class, 'login'])->name('login.login');
 
 // 新規登録
 Route::get('/register', [UserController::class, 'create']);

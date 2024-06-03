@@ -5,15 +5,15 @@
 @section('content')
     <div class="login-container">
         <h2 class="login-container__title text--ja">ログイン</h2>
-        <form action="{{route('login')}}" method="POST" class="login-form">
+        <form action="{{route('login.login')}}" method="POST" class="login-form">
             @csrf
             <label class="login-form__input-wrap" for="">
                 <span class="login-form__input-text">メールアドレス</span>
-                <input class="login-form__input input" type="email" name="" id="" placeholder="example@example.com" value="{{old('email')}}">
+                <input class="login-form__input input" type="email" name="email" id="" placeholder="example@example.com" value="{{old('email')}}">
             </label>
             <label class="login-form__input-wrap" for="">
                 <span class="login-form__input-text">パスワード</span>
-                <input class="login-form__input input" type="password" name="" id="" placeholder="パスワード">      
+                <input class="login-form__input input" type="password" name="password" id="" placeholder="パスワード">      
             </label>
 
             <div class="login-form__button-area form-button-area">
