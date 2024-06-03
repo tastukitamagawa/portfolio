@@ -27,7 +27,7 @@ Route::get('/word-update', function () {
 });
 
 // マイページの表示
-Route::get('/mypage', [MyPageController::class, 'create'])->name('myPage');
+Route::get('/mypage', [MyPageController::class, 'create'])->middleware('auth')->name('myPage');
 // ログアウト
 Route::post('/mypage/logout', [MyPageController::class, 'logout'])->name('logout');
 
