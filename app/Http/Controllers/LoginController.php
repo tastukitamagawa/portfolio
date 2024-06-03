@@ -18,6 +18,12 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
+        if($request->email === 'guest@example.com'){
+            return back()->withErrors([
+                'email' => 'メールアドレスまたはパスワードが正しくありません。',
+            ])->onlyInput('email'); 
+        }
+
         if(Auth::attempt($validation)){
             $request->session()->regenerate();
 
