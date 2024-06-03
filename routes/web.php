@@ -40,4 +40,4 @@ Route::get('/profile-update', function () {
 
 // 新規登録
 Route::get('/register', [UserController::class, 'create']);
-Route::post('user', [UserController::class, 'store'])->name('user.store');
+Route::post('/register', [UserController::class, 'store'])->name('user.store');
