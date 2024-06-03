@@ -25,6 +25,6 @@ class UserController extends Controller
         $user->password = Hash::make($validated['password']); // パスワードをハッシュ化してセット
         $user->save();
 
-        return redirect()->route('login')->with('register_success', '登録が完了しました。ログインできます。');
+        return redirect()->route('login.login')->with('register_success', '登録が完了しました。ログインできます。');
     }
 }
