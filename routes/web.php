@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\GuestLoginController;
 
 // トップページの表示
 Route::get('/', function () {
@@ -36,7 +37,10 @@ Route::get('/profile-update', function () {
 
 // ログイン
 Route::get('/login', [LoginController::class, 'create']);
-Route::post('login', [LoginController::class, 'login'])->name('login.login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.login');
+
+// ゲストログイン
+Route::post('/guest-login', [GuestLoginController::class, 'guest'])->name('guestLogin');
 
 // 新規登録
 Route::get('/register', [UserController::class, 'create']);

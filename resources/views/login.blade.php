@@ -28,7 +28,8 @@
             </div>
         </form>
 
-        <form class="guest-login" action="">
+        <form class="guest-login" action="{{route('guestLogin')}}" method="POST">
+            @csrf
             <button class="guest-login__button button" type="submit">ゲストとしてログインする</button>
         </form>
     </div>
