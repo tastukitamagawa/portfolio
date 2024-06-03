@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 
 // トップページの表示
@@ -35,9 +35,9 @@ Route::get('/profile-update', function () {
 });
 
 // ログイン
-Route::get('/login', [LoginController::class, 'create'])->name('login');
-Route::post('login', [LoginController::class, 'login']);
+// Route::get('/login', [LoginController::class, 'create'])->name('login');
+// Route::post('login', [LoginController::class, 'login']);
 
 // 新規登録
-Route::get('/register', [RegisterController::class, 'create']);
-Route::post('users', [RegisterController::class, 'store'])->name('users.store');
+Route::get('/register', [UserController::class, 'create']);
+Route::post('user', [UserController::class, 'store'])->name('user.store');
