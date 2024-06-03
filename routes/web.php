@@ -27,10 +27,7 @@ Route::get('/word-update', function () {
 });
 
 // マイページの表示
-Route::get('/mypage', function () {
-    return view('mypage');
-});
-Route::get('mypage', [MyPageController::class, 'create'])->name('myPage');
+Route::get('/mypage', [MyPageController::class, 'create'])->name('myPage');
 
 // 登録情報修正の表示
 Route::get('/profile-update', function () {
