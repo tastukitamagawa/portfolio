@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GuestLoginController;
+use App\Http\Controllers\MyPageController;
 
 // トップページの表示
 Route::get('/', function () {
@@ -29,6 +30,7 @@ Route::get('/word-update', function () {
 Route::get('/mypage', function () {
     return view('mypage');
 });
+Route::get('mypage', [MyPageController::class, 'create'])->name('myPage');
 
 // 登録情報修正の表示
 Route::get('/profile-update', function () {
