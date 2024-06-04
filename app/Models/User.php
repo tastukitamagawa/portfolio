@@ -16,8 +16,6 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    // timestampsの無効化
-    public $timestamps = false;
 
     protected $fillable = [
         'username',
