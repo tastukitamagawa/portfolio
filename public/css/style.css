@@ -168,7 +168,7 @@ html{
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 100;
-    /* display: none; */
+    display: none;
 }
 
 .modal__bg.is--show{
