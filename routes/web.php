@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GuestLoginController;
 use App\Http\Controllers\MyPageController;
+use App\Http\Controllers\UserUpdateController;
 
 // トップページの表示
 Route::get('/', function () {
@@ -34,9 +35,8 @@ Route::post('/mypage/logout', [MyPageController::class, 'logout'])->name('logout
 Route::post('/mypage/update', [MyPageController::class, 'update'])->name('update');
 
 // 登録情報修正の表示
-Route::get('/profile-update', function () {
-    return view('profile-update');
-});
+Route::get('/profile-update', [UserUpdateController::class, 'create'])->middleware('auth')->name('profileUpdate');
+Route::Post('profileUpdate/update', [UserUpdateController::class, 'update'])->name('profileUpdate.update');
 
 // ログイン
 Route::get('/login', [LoginController::class, 'create']);
