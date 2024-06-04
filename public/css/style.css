@@ -129,7 +129,7 @@ html{
     margin-top: 20px;
 }
 
-.input-wrap:first-child{
+input[type="hidden"] + .input-wrap{
     margin-top: 0;
 }
 
