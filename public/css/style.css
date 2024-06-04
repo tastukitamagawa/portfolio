@@ -160,7 +160,7 @@ html{
     padding: 3px 5px;
 }
 
-.modal__bg{
+/* .modal__bg{
     position: fixed;
     top: 0;
     left: 0;
@@ -204,7 +204,7 @@ html{
 
 .current-password-wrap + .modal-form__input-wrap{
     margin-top: 30px;
-}
+} */
 
 @media screen and (min-width: 768px){
     /* .header{
@@ -407,15 +407,17 @@ textarea.word-register-form__input{
     margin-top: 20px;
 }
 
-.login-form__button{
-    margin: 20px auto 0;
-}
-
-.login-form__button:first-child{
+/* 登録情報の修正 */
+input[type="hidden"] + .profile-update-form__input-wrap, 
+.profile-update-form__input-wrap:first-child{
     margin-top: 0;
 }
 
-/* 登録情報の修正 */
+.profile-update-form__text{
+    font-size: 1rem;
+    font-weight: 700;
+}
+
 .profile-update-form__button{
     margin: 20px auto 0;
 }
@@ -424,7 +426,42 @@ textarea.word-register-form__input{
     margin-top: 0;
 }
 
+.to-profile-update-button{
+    margin: 20px auto 0;
+}
+
+.update-alert-box{
+    border: 2px solid red;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
+.update-alert-error{
+    color: red;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: calc((7 / 14) * 1em);
+}
+
+.update-alert-error:first-child{
+    margin-top: 0;
+}
+
+.update-alert-success{
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+}
+
 /* ログイン・新規登録 */
+.login-form__button{
+    margin: 20px auto 0;
+}
+
+.login-form__button:first-child{
+    margin-top: 0;
+}
+
 .login-container__title{
     text-align: center;
     font-weight: 700;
