@@ -4,6 +4,11 @@
 
 @section('content')
     <div class="mypage-box box">
+        @if (session('update_success'))
+            <div class="update-alert-box">
+                <p class="update-alert-success">{{session('update_success')}}</p>
+            </div>
+        @endif
         <ul class="mypage-list">
             <li class="mypage-list__item">
                 <div class="mypage-list__item-text-area">
@@ -45,13 +50,14 @@
     <div class="modal__bg" id="modal-name">
         <div class="modal">
             <p class="modal__text">ユーザー名を変更する</p>
-            <form class="mypage-modal-form modal-form" action="" method="POST">
+            <form class="mypage-modal-form modal-form" action="{{route("update")}}" method="POST">
+                @csrf
                 <div class="modal-form__input-wrap">
                     <label class="modal-form__label" for="name">新しいユーザー名</label>
                     <input class="modal-form__input input" type="text" name="username" id="name">
                 </div>
                 <div class="form-button-area">
-                    <button class="login-form__button button" type="button">更新する</button>
+                    <button class="login-form__button button" type="submit">更新する</button>
                     <div class="login-form__button modal-cancel-button button border-button" role="button">キャンセルする</div>
                 </div>
             </form>
@@ -60,13 +66,14 @@
     <div class="modal__bg" id="modal-email">
         <div class="modal">
             <p class="modal__text">メールアドレスを変更する</p>
-            <form class="mypage-modal-form modal-form" action="" method="POST">
+            <form class="mypage-modal-form modal-form" action="{{route("update")}}" method="POST">
+                @csrf
                 <div class="modal-form__input-wrap">
                     <label class="modal-form__label" for="email">新しいメールアドレス</label>
                     <input class="modal-form__input input" type="email" name="email" id="email">
                 </div>
                 <div class="form-button-area">
-                    <button class="login-form__button button" type="button">更新する</button>
+                    <button class="login-form__button button" type="submit">更新する</button>
                     <div class="login-form__button modal-cancel-button button border-button" role="button">キャンセルする</div>
                 </div>
             </form>
@@ -75,8 +82,9 @@
     <div class="modal__bg" id="modal-password">
         <div class="modal">
             <p class="modal__text">パスワードを変更する</p>
-            <form class="mypage-modal-form modal-form" action="" method="POST">
-                <div class="modal-form__input-wrap">
+            <form class="mypage-modal-form modal-form" action="{{route("update")}}" method="POST">
+                @csrf
+                <div class="modal-form__input-wrap current-password-wrap">
                     <label class="modal-form__label" for="password">現在のパスワード</label>
                     <input class="modal-form__input input" type="password" name="password" id="password">
                 </div>
@@ -89,7 +97,7 @@
                     <input class="modal-form__input input" type="password" name="password_confirmation" id="password_confirmation">
                 </div>
                 <div class="form-button-area">
-                    <button class="login-form__button button" type="button">更新する</button>
+                    <button class="login-form__button button" type="submit">更新する</button>
                     <div class="login-form__button modal-cancel-button button border-button" role="button">キャンセルする</div>
                 </div>
             </form>
