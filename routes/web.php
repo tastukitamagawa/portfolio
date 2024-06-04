@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GuestLoginController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\UserUpdateController;
+use App\Http\Controllers\WordsRegisterController;
 
 // トップページの表示
 Route::get('/', function () {
@@ -21,6 +22,7 @@ Route::get('/words', function () {
 Route::get('/word-register', function () {
     return view('word-register');
 });
+Route::get('words-register', [WordsRegisterController::class, 'create'])->middleware('auth')->name('words-register');
 
 // 単語修正ページの表示
 Route::get('/word-update', function () {
