@@ -30,6 +30,8 @@ Route::get('/word-update', function () {
 Route::get('/mypage', [MyPageController::class, 'create'])->middleware('auth')->name('myPage');
 // ログアウト
 Route::post('/mypage/logout', [MyPageController::class, 'logout'])->name('logout');
+// ユーザー情報の更新
+Route::post('/mypage/update', [MyPageController::class, 'update'])->name('update');
 
 // 登録情報修正の表示
 Route::get('/profile-update', function () {
