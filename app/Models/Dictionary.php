@@ -12,4 +12,8 @@ class Dictionary extends Model
         'user_id',
         'word_id'
     ];
+
+    public function word(){
+        return $this->belongsTo(Word::class, 'word_id', 'word_id');
+    }
 }

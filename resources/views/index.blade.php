@@ -25,46 +25,12 @@
     </form>
 
     <ul class="word-list">
-        <li class="word">
-            <h2 class="word__title text--ja">英語</h2>
-            <p class="word__meaning">meaning.meaning meaning meaning meaning meaning meaning meaning meaning meaning</p>
-        </li>
-        <li class="word">
-            <h2 class="word__title text--ja">英語</h2>
-            <p class="word__meaning">meaning.meaning meaning meaning meaning meaning meaning meaning meaning meaning</p>
-        </li>
-        <li class="word">
-            <h2 class="word__title text--ja">英語</h2>
-            <p class="word__meaning">meaning.meaning meaning meaning meaning meaning meaning meaning meaning meaning</p>
-        </li>
-        <li class="word">
-            <h2 class="word__title text--ja">英語</h2>
-            <p class="word__meaning">meaning.meaning meaning meaning meaning meaning meaning meaning meaning meaning</p>
-        </li>
-        <li class="word">
-            <h2 class="word__title text--ja">英語</h2>
-            <p class="word__meaning">meaning.meaning meaning meaning meaning meaning meaning meaning meaning meaning</p>
-        </li>
-        <li class="word">
-            <h2 class="word__title text--ja">英語</h2>
-            <p class="word__meaning">meaning.meaning meaning meaning meaning meaning meaning meaning meaning meaning</p>
-        </li>
-        <li class="word">
-            <h2 class="word__title text--ja">英語</h2>
-            <p class="word__meaning">meaning.meaning meaning meaning meaning meaning meaning meaning meaning meaning</p>
-        </li>
-        <li class="word">
-            <h2 class="word__title text--ja">英語</h2>
-            <p class="word__meaning">meaning.meaning meaning meaning meaning meaning meaning meaning meaning meaning</p>
-        </li>
-        <li class="word">
-            <h2 class="word__title text--ja">英語</h2>
-            <p class="word__meaning">meaning.meaning meaning meaning meaning meaning meaning meaning meaning meaning</p>
-        </li>
-        <li class="word">
-            <h2 class="word__title text--ja">英語</h2>
-            <p class="word__meaning">meaning.meaning meaning meaning meaning meaning meaning meaning meaning meaning</p>
-        </li>
+        @foreach ($list as $word)
+            <li class="word">
+                <h2 class="word__title text--ja">{{$word->word->word}}</h2>
+                <p class="word__meaning">{{$word->word->meaning}}</p>
+            </li>
+        @endforeach
     </ul>
 @endsection('content')
 
