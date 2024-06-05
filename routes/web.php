@@ -25,6 +25,7 @@ Route::post('/words-register/add', [WordsRegisterController::class, 'register'])
 
 // 単語修正ページの表示
 Route::get('/word-update', [WordUpdateController::class, 'create'])->middleware('auth')->name('wordUpdate');
+Route::post('/word-update/edit', [WordUpdateController::class, 'update'])->name('wordEdit');
 
 // マイページの表示
 Route::get('/mypage', [MyPageController::class, 'create'])->middleware('auth')->name('myPage');
