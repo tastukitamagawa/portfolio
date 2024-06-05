@@ -139,12 +139,20 @@ return [
         'new_password'=>[
             'confirmed' => '新しいパスワード（確認）と一致していません。',
             'regex' => 'パスワードは8文字以上で、小文字のアルファベットと数字をそれぞれ1文字以上含める必要があります。',
+        ],
+        'word'=>[
+            'regex' => '英語で入力してください。'
+        ],
+        'meaning'=>[
+            'regex' => '英語で入力してください。'
         ]
     ],
     'attributes' => [
         'username' => 'ユーザー名',
         'email' => 'メールアドレス',
         'password' => 'パスワード',
-        'new_password' => '新しいパスワード'
+        'new_password' => '新しいパスワード',
+        'word' => 'Word',
+        'meaning' => 'Meaning',
     ]
 ];
