@@ -30,7 +30,7 @@
 
             <div class="word-register-form__button-area form-button-area">
                 <button class="word-register-form__button button" type="submit">登録する</button>
-                <a href="" class="word-register-form__button button border-button" role="button">戻る</a>
+                <a href="{{route('top')}}" class="word-register-form__button button border-button" role="button">戻る</a>
             </div>
         </form>
     </div>

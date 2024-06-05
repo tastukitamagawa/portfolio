@@ -6,12 +6,11 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GuestLoginController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\UserUpdateController;
+use App\Http\Controllers\WordsListController;
 use App\Http\Controllers\WordsRegisterController;
 
 // トップページの表示
-Route::get('/', function () {
-    return view('index');
-})->middleware('auth');
+Route::get('/', [WordsListController::class, 'create'])->middleware('auth')->name('top');
 
 // 単語ページの表示
 Route::get('/words', function () {
