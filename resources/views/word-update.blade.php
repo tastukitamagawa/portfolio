@@ -5,6 +5,7 @@
 @section('content')
     <div class="word-register-box box">
         <form action="" class="word-register-form">
+            @csrf
             <div class="word-register-form__input-wrap input-wrap">
                 <label for="">
                     <span class="word-register-form__text">Word</span>
@@ -24,5 +25,7 @@
             </div>
         </form>
     </div>
+
+    <a href="{{route('top')}}" class="word-update__back-button button">一覧へ戻る</a>
 
 @endsection

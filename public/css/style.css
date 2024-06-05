@@ -327,6 +327,10 @@ textarea.word-register-form__input{
     margin: 0 0 40px;
 }
 
+.word-update__back-button{
+    margin: 40px auto 0;
+}
+
 /* マイページ */
 .mypage-list__item{
     display: flex;
