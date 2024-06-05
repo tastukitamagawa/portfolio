@@ -480,3 +480,25 @@ input[type="hidden"] + .profile-update-form__input-wrap,
     border-color: red;
     color: red;
 }
+
+/* ページネーション */
+.pagination{
+    margin-top: 40px;
+}
+
+.pagination nav > div:first-child,
+.pagination nav > div:nth-child(2) > div:first-child{
+    display: none;
+}
+
+.pagination nav > div:nth-child(2) > div:nth-child(2) > span{
+    display: flex;
+    justify-content: center;
+}
+
+.pagination nav > div:nth-child(2) > div:nth-child(2) > span > *{
+    width: calc((24 / 18) * 1em);
+    height: calc((24 / 18) * 1em);
+    text-align: center;
+    font-size: 18px;
+}
