@@ -8,7 +8,7 @@ use App\Models\Word;
 class WordsRegisterController extends Controller
 {
     public function create(){
-        return view(('/word-register'));
+        return view('/word-register');
     }
 
     public function register(Request $request){
