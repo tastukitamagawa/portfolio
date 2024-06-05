@@ -4,18 +4,18 @@
 
 @section('content')
     <div class="word-register-box box">
-        <form action="" class="word-register-form">
+        <form action="{{route('wordEdit')}}" class="word-register-form" method="POST">
             @csrf
             <div class="word-register-form__input-wrap input-wrap">
-                <label for="">
+                <label for="word">
                     <span class="word-register-form__text">Word</span>
-                    <input class="word-register-form__input input" type="text" name="" id="">
+                    <input class="word-register-form__input input" type="text" name="word" id="word" value="{{old('word', $word->word)}}">
                 </label>
             </div>
             <div class="word-register-form__input-wrap input-wrap">
-                <label for="">
+                <label for="meaning">
                     <span class="word-register-form__text">Meaning</span>
-                    <textarea class="word-register-form__input input" name="" id=""></textarea>
+                    <textarea class="word-register-form__input input" name="meaning" id="meaning">{{old('meaning', $word->meaning)}}</textarea>
                 </label>
             </div>
 
