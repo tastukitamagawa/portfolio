@@ -11,6 +11,7 @@ use App\Http\Controllers\WordsRegisterController;
 
 // トップページの表示
 Route::get('/', [WordsListController::class, 'create'])->middleware('auth')->name('top');
+Route::get('/words-limit', [WordsListController::class, 'create'])->middleware('auth')->name('listLimit');
 
 // 単語ページの表示
 Route::get('/words', function () {
