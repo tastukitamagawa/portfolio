@@ -249,10 +249,17 @@ input[type="hidden"] + .input-wrap{
     box-shadow: 5px 5px #00b7ce;
     padding: 15px;
     margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .word:first-child{
     margin-top: 0;
+}
+
+.word-text-area{
+    margin-right: 15px;
 }
 
 .word__title{
