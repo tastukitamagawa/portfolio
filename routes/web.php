@@ -19,10 +19,8 @@ Route::get('/words', function () {
 });
 
 // 単語登録ページの表示
-Route::get('/word-register', function () {
-    return view('word-register');
-});
-Route::get('words-register', [WordsRegisterController::class, 'create'])->middleware('auth')->name('words-register');
+Route::get('/words-register', [WordsRegisterController::class, 'create'])->middleware('auth')->name('words-register');
+Route::post('/words-register/add', [WordsRegisterController::class, 'register'])->name('wordsAdd');
 
 // 単語修正ページの表示
 Route::get('/word-update', function () {
