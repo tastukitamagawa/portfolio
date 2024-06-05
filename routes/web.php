@@ -8,6 +8,7 @@ use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\UserUpdateController;
 use App\Http\Controllers\WordsListController;
 use App\Http\Controllers\WordsRegisterController;
+use App\Http\Controllers\WordUpdateController;
 
 // トップページの表示
 Route::get('/', [WordsListController::class, 'create'])->middleware('auth')->name('top');
@@ -23,9 +24,7 @@ Route::get('/words-register', [WordsRegisterController::class, 'create'])->middl
 Route::post('/words-register/add', [WordsRegisterController::class, 'register'])->name('wordsAdd');
 
 // 単語修正ページの表示
-Route::get('/word-update', function () {
-    return view('word-update');
-});
+Route::get('/word-update', [WordUpdateController::class, 'create'])->middleware('auth')->name('wordUpdate');
 
 // マイページの表示
 Route::get('/mypage', [MyPageController::class, 'create'])->middleware('auth')->name('myPage');
