@@ -16,7 +16,7 @@ Route::get('/', [WordsListController::class, 'create'])->middleware('auth')->nam
 Route::get('/words-limit', [WordsListController::class, 'create'])->middleware('auth')->name('listLimit');
 
 // 単語ページの表示
-Route::get('/words', [WordsController::class, 'create'])->middleware('auth')->name('words');
+Route::get('/words/{id}', [WordsController::class, 'create'])->middleware('auth')->name('words');
 
 // 単語登録ページの表示
 Route::get('/words-register', [WordsRegisterController::class, 'create'])->middleware('auth')->name('words-register');
