@@ -4,6 +4,11 @@
 
 @section('content')
     <div class="word-register-box box">
+        @if ($errors->has('word_update_fail'))
+            <div class="update-alert-box">
+                <p class="update-alert-error">{{$errors->first('word_update_fail')}}</p>
+            </div>
+        @endif
         <form action="{{route('wordEdit')}}" class="word-register-form" method="POST">
             @csrf
             <div class="word-register-form__input-wrap input-wrap">

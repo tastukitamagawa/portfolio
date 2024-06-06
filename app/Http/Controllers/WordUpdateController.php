@@ -16,17 +16,24 @@ class WordUpdateController extends Controller
     
     public function update(Request $request){
         // 現在表示されている単語
-        // dd(session('word_id'));
         $currentWord = Word::where('word_id', session('word_id'))->firstOrFail();
         $validated = $request->validate([
             'word' => 'nullable|string|regex:/^[a-zA-z]+$/',
             'meaning' => 'nullable|string|regex:/^[a-zA-Z,.&\s\n]+$/',
         ]);
 
-        $currentWord->word = $validated['word'];
-        // if($request->word){
-        // }
-
+        $isChanged = false;
+        if($validated['word'] != null &&  $currentWord->word != $validated['word']){
+            $currentWord->word = $validated['word'];
+            $isChanged = true;
+        }
+        if($validated['meaning'] != null && $currentWord->meaning != $validated['meaning']){
+            $currentWord->meaning = $validated['meaning'];
+            $isChanged = true;
+        }
+        if(!$isChanged){
+            return back()->withErrors(['word_update_fail' => '更新したい項目を変更してください。']);
+        }
         $currentWord->save();
 
         return redirect('/');
