@@ -21,11 +21,14 @@ Route::get('/words', function () {
 
 // 単語登録ページの表示
 Route::get('/words-register', [WordsRegisterController::class, 'create'])->middleware('auth')->name('words-register');
+// 単語登録
 Route::post('/words-register/add', [WordsRegisterController::class, 'register'])->name('wordsAdd');
 
-// 単語修正ページの表示
+// 単語更新ページの表示
 Route::get('/word-update', [WordUpdateController::class, 'create'])->middleware('auth')->name('wordUpdate');
+// 単語更新
 Route::post('/word-update/edit', [WordUpdateController::class, 'update'])->name('wordEdit');
+// 単語削除
 Route::delete('/word-update/delete', [WordUpdateController::class, 'delete'])->name('wordDelete');
 
 // マイページの表示
