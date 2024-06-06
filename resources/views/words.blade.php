@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="word-box box">
-        <h2 class="word-box__title">apple</h2>
-        <p class="word-box__meaning">meaning meanignmeaning meanignmeaning meanignmeaning meanignmeaning meanignmeaning meanignmeaning meanignmeaning meanignmeaning meanignmeaning meanignmeaning meanignmeaning meanign</p>
+        <h2 class="word-box__title">{{$word->word->word}}</h2>
+        <p class="word-box__meaning">{{$word->word->meaning}}</p>
         <div class="word-box__operation-area">
             <span class="word-box__operation-icon is-prev">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="none"><path d="M560-280 360-480l200-200v400Z"/></svg>

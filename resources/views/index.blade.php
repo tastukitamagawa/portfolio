@@ -3,7 +3,8 @@
 @section('title', 'P.E.Dictionary')
 
 @section('content')
-    <form class="dictionary-form" action="">
+    <form class="dictionary-form" action="{{route('words', ['id' => $id])}}" method="GET">
+        @csrf
         <div class="dictionary-form__word-amount">
             <span class="text text--ja">再生する単語数</span>
             <span class="dictionary-form__input-wrap text--ja">
