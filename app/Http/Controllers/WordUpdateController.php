@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dictionary;
 use App\Models\Word;
 use Illuminate\Http\Request;
 
@@ -36,6 +37,11 @@ class WordUpdateController extends Controller
         }
         $currentWord->save();
 
+        return redirect('/');
+    }
+
+    public function delete(){
+        Word::where('word_id', session('word_id'))->delete();
         return redirect('/');
     }
 }

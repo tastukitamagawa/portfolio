@@ -26,8 +26,12 @@
 
             <div class="word-register-form__button-area form-button-area">
                 <button class="word-register-form__button button" type="submit">修正する</button>
-                <button class="word-register-form__button button border-button" type="submit">削除する</button>
             </div>
+        </form>
+        <form action="{{route('wordDelete')}}" method="POST">
+            @csrf
+            @method('delete')
+            <button class="word-delete-form__button button border-button" type="submit">削除する</button>
         </form>
     </div>
 
