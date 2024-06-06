@@ -18,15 +18,6 @@
                     <p class="error">{{$errors->first('word')}}</p>
                 @endif
             </div>
-            <div class="word-register-form__input-wrap input-wrap">
-                <label for="meaning">
-                    <span class="word-register-form__text">Meaning</span>
-                    <textarea class="word-register-form__input input" name="meaning" id="meaning">{{old("meaning")}}</textarea>
-                </label>
-                @if ($errors->has('meaning'))
-                    <p class="error">{{$errors->first('meaning')}}</p>
-                @endif
-            </div>
 
             <div class="word-register-form__button-area form-button-area">
                 <button class="word-register-form__button button" type="submit">登録する</button>

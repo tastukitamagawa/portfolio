@@ -15,19 +15,34 @@ class WordsRegisterController extends Controller
     public function register(Request $request){
         $validated = $request->validate([
             'word' => 'required|string|regex:/^[a-zA-z]+$/',
-            'meaning' => 'required|string|regex:/^[a-zA-Z,.&\s\n]+$/',
+            'meaning' => 'nullable|string|regex:/^[a-zA-Z,.&\s\n]+$/',
         ]);
 
         $word = new Word();
-        $dictionary = new Dictionary();
         // wordsのデータベースに登録
         $word->word = $validated['word'];
-        $word->meaning = $validated['meaning'];
+
+        // wordsAPIの設定
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('GET', 'https://wordsapiv1.p.rapidapi.com/words/'.$word->word.'/definitions', [
+            'headers' => [
+                'x-rapidapi-host' => 'wordsapiv1.p.rapidapi.com',
+                'x-rapidapi-key' => '0cef2f2d8cmshb68b84535fb820ep19a65bjsn15140a4837ef',
+            ],
+        ]);
+        $definitions = json_decode($response->getBody()->getContents(), true);
+
+        $word->meaning = $definitions['definitions'][0]['definition'];
+
         $word->save();
+
         // dictionariesのデータベースに登録
+        $dictionary = new Dictionary();
         $dictionary->user_id = auth()->id();
-        $dictionary->word_id = $word->id;
-        $dictionary->save();
+        $dictionary->word_id = $word->word_id;
+        $dictionary->save();        
+
         return back()->with('word_register_success', '英単語を登録しました。');
     }
 }
