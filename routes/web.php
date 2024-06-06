@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GuestLoginController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\UserUpdateController;
+use App\Http\Controllers\WordsController;
 use App\Http\Controllers\WordsListController;
 use App\Http\Controllers\WordsRegisterController;
 use App\Http\Controllers\WordUpdateController;
@@ -15,9 +16,7 @@ Route::get('/', [WordsListController::class, 'create'])->middleware('auth')->nam
 Route::get('/words-limit', [WordsListController::class, 'create'])->middleware('auth')->name('listLimit');
 
 // 単語ページの表示
-Route::get('/words', function () {
-    return view('words');
-});
+Route::get('/words', [WordsController::class, 'create'])->middleware('auth')->name('words');
 
 // 単語登録ページの表示
 Route::get('/words-register', [WordsRegisterController::class, 'create'])->middleware('auth')->name('words-register');
