@@ -331,6 +331,10 @@ textarea.word-register-form__input{
     margin: 40px auto 0;
 }
 
+.word-delete-form__button{
+    margin: 20px auto 0;
+}
+
 /* マイページ */
 .mypage-list__item{
     display: flex;
