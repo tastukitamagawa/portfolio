@@ -13,6 +13,7 @@ use App\Http\Controllers\WordUpdateController;
 
 // トップページの表示
 Route::get('/', [WordsListController::class, 'create'])->middleware('auth')->name('top');
+// 制限をつける
 Route::get('/words-limit', [WordsListController::class, 'create'])->middleware('auth')->name('listLimit');
 
 // 単語ページの表示
