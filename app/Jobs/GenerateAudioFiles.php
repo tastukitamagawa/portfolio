@@ -65,7 +65,6 @@ class GenerateAudioFiles implements ShouldQueue
         if(!file_exists($outputDir)){
             mkdir($outputDir, 0777, true);
         }
-
         
         // ハッシュマップ
         $hashmap = [];
