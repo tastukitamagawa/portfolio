@@ -4,13 +4,13 @@
 
 @section('content')
     <div class="word-box box">
-        <h2 class="word-box__title">{{$word->word->word}}</h2>
-        <p class="word-box__meaning">{{$word->word->meaning}}</p>
+        <h2 class="word-box__title" id="word">{{$word->word->word}}</h2>
+        <p class="word-box__meaning" id="meaning">{{$word->word->word}}</p>
         <audio class="voice" id="word-voice" controls>
-            <source src="{{asset('storage/voice/word.mp3')}}" type="audio/mpeg">
+            <source src="{{asset('storage/voice/word'.$word->word->word_id.'.mp3')}}" type="audio/mpeg">
         </audio>
         <audio class="voice" id="meaning-voice" controls>
-            <source src="{{asset('storage/voice/meaning.mp3')}}" type="audio/mpeg">
+            <source src="{{asset('storage/voice/meaning'.$word->word->word_id.'.mp3')}}" type="audio/mpeg">
         </audio>
         <div class="word-box__operation-area">
             <span class="word-box__operation-icon is-prev">
