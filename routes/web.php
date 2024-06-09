@@ -18,6 +18,7 @@ Route::get('/words-limit', [WordsListController::class, 'create'])->middleware('
 
 // 単語ページの表示
 Route::post('/words/{id}', [WordsController::class, 'create'])->middleware('auth')->name('words');
+// 音声ファイルの作成とjsonデータの作成
 Route::post('/get-words', [WordsController::class, 'getWords']);
 
 // 単語登録ページの表示
