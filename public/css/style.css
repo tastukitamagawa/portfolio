@@ -293,9 +293,19 @@ input[type="hidden"] + .input-wrap{
 .word-box__operation-icon{
     width: 45px;
     display: block;
+    cursor: pointer;
 }
 
-.word-box__operation-icon:nth-child(2){
+.word-box__operation-icon.is-hide{
+    display: none;
+}
+
+.word-box__operation-icon.is-show{
+    display: block;
+}
+
+.word-box__operation-icon.is-stop,
+.word-box__operation-icon.is-start{
     margin: 0 40px;
 }
 
