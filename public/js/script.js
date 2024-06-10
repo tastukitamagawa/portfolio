@@ -1,13 +1,20 @@
+// URL
 let url = location.href;
+// 指定のワードのインデックス
 const indexText = url.indexOf('/words');
+// word
 const wordVoice = document.getElementById('word-voice');
 const wordVoiceChild = wordVoice.firstElementChild;
 let wordVoiceSrc = wordVoiceChild.src;
+const word = document.getElementById('word');
+// meaning
 const meaningVoice = document.getElementById('meaning-voice');
 const meaningVoiceChild = meaningVoice.firstElementChild;
-let meaningVoiceSrc = meaningVoiceChild.src;
-const word = document.getElementById('word');
 const meaning = document.getElementById('meaning');
+let meaningVoiceSrc = meaningVoiceChild.src;
+// wordsページボタン
+const voiceStopButton = document.getElementById('voice-stop-button');
+const voiceStartButton = document.getElementById('voice-start-button');
 
 // 音声ファイルの変更
 const getPath = (src) => {
@@ -18,7 +25,6 @@ const getPath = (src) => {
 
     return voicePath
 }
-
 let wordVoicePath = getPath(wordVoiceSrc);
 let meaningVoicePath = getPath(wordVoiceSrc);
 
@@ -41,18 +47,27 @@ xhr.onreadystatechange = () =>{
             let wordsData = JSON.parse(xhr.responseText);
             if(indexText > -1){
                 let wordsCount = 0;
+
+                // 音声制御
+                let isPlaying = true;
                 
                 const playNextWord = () => {
+                    // 音声の読み込み
+                    wordVoice.load();
+                    meaningVoice.load();
+                    
+                    // すべてのデータが流れた場合や、停止されている場合
                     if(wordsCount === wordsData.length){
+                        return window.location.href = '/';
+                    } else if(!isPlaying){
                         return;
                     }
+
                     // 音声の再生
                     let wordPlay = () => {
-                        wordVoice.load();
                         wordVoice.play();
                     }
                     let meaningPlay = () => {
-                        meaningVoice.load();
                         meaningVoice.play();
                     }
                     
@@ -65,17 +80,41 @@ xhr.onreadystatechange = () =>{
 
                     wordPlay();
                     wordVoice.addEventListener('ended', () => {
+                        // 音声が再生されていない場合、終了する
+                        if(!isPlaying) return;
                         setTimeout(() => {
                             meaningPlay();
                         }, 1500);
                     }, {once: true});
                     meaningVoice.addEventListener('ended', () => {
+                        // 音声が再生されていない場合、終了する
+                        if(!isPlaying) return;
                         setTimeout(() => {
                             wordsCount++;
                             playNextWord();
                         }, 1000);
                     }, {once: true});
                 }   
+
+                // ボタン制御
+                const voiceOperation = (button) =>{
+                    button.addEventListener('click', function(){
+                        this.classList.add('is-hide');
+                        this.classList.remove('is-show');
+                        if(button === voiceStopButton){
+                            voiceStartButton.classList.add('is-show');
+                            isPlaying = false;
+                            return;
+                        } else if(button === voiceStartButton){
+                            voiceStopButton.classList.add('is-show');
+                            isPlaying = true;
+                            playNextWord();
+                        }
+                    });
+                }
+                voiceOperation(voiceStopButton);
+                voiceOperation(voiceStartButton);
+                
                 setTimeout(() => {
                     playNextWord();
                 }, 1500)
