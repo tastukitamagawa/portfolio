@@ -15,6 +15,7 @@ use Google\Cloud\TextToSpeech\V1\SsmlVoiceGender;
 use Google\Cloud\TextToSpeech\V1\AudioEncoding;
 use Google\Cloud\TextToSpeech\V1\AudioConfig;
 use Google\Cloud\TextToSpeech\V1\SynthesisInput;
+use Illuminate\Support\Facades\Log;
 
 class GenerateAudioFiles implements ShouldQueue
 {
@@ -28,6 +29,7 @@ class GenerateAudioFiles implements ShouldQueue
     public function __construct($wordData)
     {
         $this->wordData = $wordData;
+        Log::info($this->wordData);
     }
 
     /**
@@ -35,68 +37,82 @@ class GenerateAudioFiles implements ShouldQueue
      */
     public function handle(): void
     {
-        // 環境変数に値を入れる
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__ . '/../../text-to-speak.json');
+        try {
+            Log::info('Job started.');
 
-        // 新しくクライアントを設定する
-        $wordClient = new TextToSpeechClient();
-        $meaningClient = new TextToSpeechClient();
+            // 環境変数に値を入れる
+            putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__ . '/../../text-to-speak.json');
 
-        // 音声化対象のテキストの設定
-        $meaningInput = new SynthesisInput();
-        $wordInput = new SynthesisInput();
+            // 新しくクライアントを設定する
+            $wordClient = new TextToSpeechClient();
+            $meaningClient = new TextToSpeechClient();
 
-        // 音声の設定
-        $wordVoice = new VoiceSelectionParams();
-        $wordVoice->setLanguageCode('en-US');
-        $wordVoice->setSsmlGender(SsmlVoiceGender::FEMALE);
-        $meaningVoice = new VoiceSelectionParams();
-        $meaningVoice->setLanguageCode('en-US');
-        $meaningVoice->setSsmlGender(SsmlVoiceGender::MALE);
+            // 音声化対象のテキストの設定
+            $wordInput = new SynthesisInput();
+            $meaningInput = new SynthesisInput();
 
-        // ファイル形式の設定
-        $wordAudioConfig = new AudioConfig();
-        $wordAudioConfig->setAudioEncoding(AudioEncoding::MP3);
-        $meaningAudioConfig = new AudioConfig();
-        $meaningAudioConfig->setAudioEncoding(AudioEncoding::MP3);
+            // 音声の設定
+            $wordVoice = new VoiceSelectionParams();
+            $wordVoice->setLanguageCode('en-US');
+            $wordVoice->setSsmlGender(SsmlVoiceGender::FEMALE);
+            $meaningVoice = new VoiceSelectionParams();
+            $meaningVoice->setLanguageCode('en-US');
+            $meaningVoice->setSsmlGender(SsmlVoiceGender::MALE);
 
-        // フォルダの作成
-        $outputDir = storage_path('app/public/voice');
-        if(!file_exists($outputDir)){
-            mkdir($outputDir, 0777, true);
-        }
-        
-        // ハッシュマップ
-        $hashmap = [];
-        foreach($this->wordData as $word){
-            $hashmap[] = [
-                'word_id' => $word['word']['word_id'],
-                'word' => $word['word']['word'],
-                'meaning' => $word['word']['meaning'],
-            ];
-        }
-        for($i = 0; $i < count($hashmap); $i++){
-            $wordInput->setText($hashmap[$i]['word']);
-            $meaningInput->setText($hashmap[$i]['meaning']);
+            // ファイル形式の設定
+            $wordAudioConfig = new AudioConfig();
+            $wordAudioConfig->setAudioEncoding(AudioEncoding::MP3);
+            $meaningAudioConfig = new AudioConfig();
+            $meaningAudioConfig->setAudioEncoding(AudioEncoding::MP3);
 
-            // 保存するファイル
-            $wordOutputPath = $outputDir . '/word'.$hashmap[$i]['word_id'].'.mp3';
-            $meaningOutputPath = $outputDir . '/meaning'.$hashmap[$i]['word_id'].'.mp3';
-           
-            // オプションの指定
-            $wordResponse = $wordClient->synthesizeSpeech($wordInput, $wordVoice, $wordAudioConfig);
-            $meaningResponse = $meaningClient->synthesizeSpeech($meaningInput, $meaningVoice, $meaningAudioConfig);
+            // フォルダの作成
+            $outputDir = storage_path('app/public/voice');
+            if (!file_exists($outputDir)) {
+                mkdir($outputDir, 0777, true);
+            }
+            Log::info(is_writable($outputDir) ? 'Output directory is writable' : 'Output directory is not writable');
             
-            // 音声データーの取得
-            $wordAudioContent = $wordResponse->getAudioContent();
-            $meaningAudioContent = $meaningResponse->getAudioContent();
+            // ハッシュマップ
+            $hashmap = [];
+            foreach($this->wordData as $word){
+                $hashmap[] = [
+                    'word_id' => $word['word']['word_id'],
+                    'word' => $word['word']['word'],
+                    'meaning' => $word['word']['meaning'],
+                ];
+            }
+            Log::info($this->wordData);
 
-            // データをファイルの書き込む
-            file_put_contents($wordOutputPath, $wordAudioContent);
-            file_put_contents($meaningOutputPath, $meaningAudioContent);    
+            for ($i = 0; $i < count($hashmap); $i++) {
+                $wordInput->setText($hashmap[$i]['word']);
+                $meaningInput->setText($hashmap[$i]['meaning']);
+
+                // 保存するファイル
+                $wordOutputPath = $outputDir . '/word' . $hashmap[$i]['word_id'] . '.mp3';
+                $meaningOutputPath = $outputDir . '/meaning' . $hashmap[$i]['word_id'] . '.mp3';
+            
+                // オプションの指定
+                $wordResponse = $wordClient->synthesizeSpeech($wordInput, $wordVoice, $wordAudioConfig);
+
+                $meaningResponse = $meaningClient->synthesizeSpeech($meaningInput, $meaningVoice, $meaningAudioConfig);
+                
+                // 音声データーの取得
+                $wordAudioContent = $wordResponse->getAudioContent();
+                Log::info($wordAudioContent ? 'Word audio content retrieved' : 'Word audio content is empty');
+
+                $meaningAudioContent = $meaningResponse->getAudioContent();
+                Log::info($meaningAudioContent ? 'Meaning audio content retrieved' : 'Meaning audio content is empty');
+
+                // データをファイルの書き込む
+                file_put_contents($wordOutputPath, $wordAudioContent);
+                file_put_contents($meaningOutputPath, $meaningAudioContent);
+                Log::info("Generated audio files for word ID: " . $hashmap[$i]['word_id']);    
+            }
+            
+            $wordClient->close();
+            $meaningClient->close();
+        } catch (\Exception $e) {
+            Log::error('Error: ' . $e->getMessage());
         }
-        
-        $wordClient->close();
-        $meaningClient->close();
     }
 }
