@@ -35,7 +35,7 @@
     <div class="mypage-button-area">
         <form action="{{route('logout')}}" class="mypage-form mypage-form-logout" method="POST">
             @csrf
-            <button class="mypage-form__button button" type="submit text--ja">ログアウトする</button>
+            <button class="mypage-form__button button" id="logout-button" type="submit text--ja">ログアウトする</button>
         </form>
         <form action="" class="mypage-form mypage-form-delete">
             <button class="mypage-form__button button border-button" type="submit text--ja">削除する</button>
