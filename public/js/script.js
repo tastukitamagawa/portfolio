@@ -1,7 +1,7 @@
 // URL
 let url = location.href;
 // 指定のワードのインデックス
-const indexText = url.indexOf('/words');
+const indexText = url.indexOf('/words/');
 // word
 const wordVoice = document.getElementById('word-voice');
 const word = document.getElementById('word');
@@ -13,20 +13,23 @@ const voiceStopButton = document.getElementById('voice-stop-button');
 const voiceStartButton = document.getElementById('voice-start-button');
 const wordPrevButton = document.getElementById('word-prev-button');
 const wordNextButton = document.getElementById('word-next-button');
+// ナビゲーションボタン
+const navButtons = document.getElementsByClassName('navigation-list__item');
+const navButtonsArray = Array.from(navButtons);
+// ログアウトボタン
+const logoutButton = document.getElementById('logout-button');
+
 
 // csrfトークンの取得
 let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
 // 新しいリクエストの取得
 let xhr = new XMLHttpRequest();
-
 // リクエストの設定
 xhr.open('POST', '/get-words', true);
-
 // リクエストヘッダーの設定
 xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
-
+// 非同期で単語の遷移
 xhr.onreadystatechange = () =>{
     if(xhr.readyState === 4){
         if(xhr.status >= 200 && xhr.status < 300){
@@ -150,6 +153,24 @@ xhr.onreadystatechange = () =>{
         } 
     }
 }
-
 // リクエストを送信
 xhr.send();
+
+
+//現在ページが分かるようにナビゲーションボタンに印を付ける
+window.addEventListener('load', () => {
+    // ページ名の取得
+    let urlIndex = url.lastIndexOf('/');
+    let urlPath = url.substring(urlIndex + 1);
+    
+    navButtonsArray.forEach(navButton => {
+        let currentPage = navButton.getAttribute('data-page');
+        if(currentPage === 'top'){
+            currentPage = '';
+        }
+        navButton.classList.remove('is-current');
+        if(urlPath === currentPage){
+            navButton.classList.add('is-current');
+        }
+    })
+});
