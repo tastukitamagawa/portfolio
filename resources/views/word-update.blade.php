@@ -30,7 +30,7 @@
         </form>
         <form action="{{route('wordDelete')}}" method="POST">
             @csrf
-            @method('delete')
+            @method('DELETE')
             <button class="word-delete-form__button button border-button" type="submit">削除する</button>
         </form>
     </div>
