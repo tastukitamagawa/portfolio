@@ -8,7 +8,7 @@
         <div class="dictionary-form__word-amount">
             <span class="text text--ja">再生する単語数</span>
             <span class="dictionary-form__input-wrap text--ja">
-                <input class="dictionary-form__word-amount-input" type="text" inputmode="numeric" pattern="\d*">個
+                <input class="dictionary-form__word-amount-input" type="text" inputmode="numeric" name="amount" pattern="\d*" value="{{old('amount')}}">個
             </span>
         </div>
         <button class="dictionary-form__button" type="submit text--ja">再生する</button>
