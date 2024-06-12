@@ -29,7 +29,6 @@ class GenerateAudioFiles implements ShouldQueue
     public function __construct($wordData)
     {
         $this->wordData = $wordData;
-        Log::info($this->wordData);
     }
 
     /**
@@ -38,8 +37,6 @@ class GenerateAudioFiles implements ShouldQueue
     public function handle(): void
     {
         try {
-            Log::info('Job started.');
-
             // 環境変数に値を入れる
             putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__ . '/../../text-to-speak.json');
 
@@ -70,7 +67,6 @@ class GenerateAudioFiles implements ShouldQueue
             if (!file_exists($outputDir)) {
                 mkdir($outputDir, 0777, true);
             }
-            Log::info(is_writable($outputDir) ? 'Output directory is writable' : 'Output directory is not writable');
             
             // ハッシュマップ
             $hashmap = [];
@@ -81,7 +77,6 @@ class GenerateAudioFiles implements ShouldQueue
                     'meaning' => $word['word']['meaning'],
                 ];
             }
-            Log::info($this->wordData);
 
             for ($i = 0; $i < count($hashmap); $i++) {
                 $wordInput->setText($hashmap[$i]['word']);
@@ -98,15 +93,12 @@ class GenerateAudioFiles implements ShouldQueue
                 
                 // 音声データーの取得
                 $wordAudioContent = $wordResponse->getAudioContent();
-                Log::info($wordAudioContent ? 'Word audio content retrieved' : 'Word audio content is empty');
 
                 $meaningAudioContent = $meaningResponse->getAudioContent();
-                Log::info($meaningAudioContent ? 'Meaning audio content retrieved' : 'Meaning audio content is empty');
 
                 // データをファイルの書き込む
                 file_put_contents($wordOutputPath, $wordAudioContent);
                 file_put_contents($meaningOutputPath, $meaningAudioContent);
-                Log::info("Generated audio files for word ID: " . $hashmap[$i]['word_id']);    
             }
             
             $wordClient->close();
