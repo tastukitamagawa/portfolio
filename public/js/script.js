@@ -1,7 +1,7 @@
 // URL
-let url = location.href;
-// 指定のワードのインデックス
-const indexText = url.indexOf('/words/');
+const url = location.href;
+// pathname
+const pathname = location.pathname;
 // word
 const wordVoice = document.getElementById('word-voice');
 const word = document.getElementById('word');
@@ -34,7 +34,7 @@ xhr.onreadystatechange = () =>{
     if(xhr.readyState === 4){
         if(xhr.status >= 200 && xhr.status < 300){
             let wordsData = JSON.parse(xhr.responseText);
-            if(indexText > -1){
+            if(pathname === '/words'){
                 let wordsCount = 0;
                 const wordVoiceChild = wordVoice.firstElementChild;
                 const meaningVoiceChild = meaningVoice.firstElementChild;
@@ -62,7 +62,6 @@ xhr.onreadystatechange = () =>{
                     button.addEventListener('click', function() {
                         wordsCount += increment;
                         isWOrdOperation = true;
-
                     });
                 };
                 
