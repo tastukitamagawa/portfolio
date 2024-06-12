@@ -21,6 +21,11 @@ class MyPageController extends Controller
         // セッション無効化を再生成する
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect()->route('login');
+    }
+
+    public function delete(){
+        User::where('id', auth()->id())->delete();
+        return redirect()->route('login');
     }
 }

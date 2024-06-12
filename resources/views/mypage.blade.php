@@ -37,8 +37,12 @@
             @csrf
             <button class="mypage-form__button button" id="logout-button" type="submit text--ja">ログアウトする</button>
         </form>
-        <form action="" class="mypage-form mypage-form-delete">
-            <button class="mypage-form__button button border-button" type="submit text--ja">削除する</button>
+        @if (isset($user) && $user->id !== 1)
+        <form action="{{route('delete')}}" class="mypage-form mypage-form-delete" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="mypage-form__button button border-button text--ja" type="submit">削除する</button>
         </form>
+        @endif
     </div>
 @endsection
