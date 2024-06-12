@@ -42,6 +42,6 @@ class WordUpdateController extends Controller
 
     public function delete(){
         Word::where('word_id', session('word_id'))->delete();
-        return redirect('/');
+        return redirect()-route('login');
     }
 }
