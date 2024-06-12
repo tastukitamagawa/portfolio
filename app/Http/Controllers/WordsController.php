@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Log;
 
 class WordsController extends Controller
 {
-    public function create(Request $request, $id){
+    public function create(Request $request){
         $amount = $request->input('amount') ? (int)$request->input('amount') : Dictionary::where("user_id", auth()->id())->count();
         session(['limitAmount' => $amount]);
-        $word = Dictionary::where("user_id", auth()->id())->where('word_id', $id)->with('word')->orderBy('created_at')->first();
+        $word = Dictionary::where("user_id", auth()->id())->with('word')->orderBy('created_at')->first();
         return view('words', compact('word'));
     }
 
