@@ -17,7 +17,7 @@ Route::get('/', [WordsListController::class, 'create'])->middleware('auth')->nam
 Route::get('/words-limit', [WordsListController::class, 'create'])->middleware('auth')->name('listLimit');
 
 // 単語ページの表示
-Route::post('/words/{id}', [WordsController::class, 'create'])->middleware('auth')->name('words');
+Route::post('/words/{id?}', [WordsController::class, 'create'])->middleware('auth')->name('words');
 // 音声ファイルの作成とjsonデータの作成
 Route::post('/get-words', [WordsController::class, 'getWords']);
 
@@ -39,13 +39,15 @@ Route::get('/mypage', [MyPageController::class, 'create'])->middleware('auth')->
 Route::post('/mypage/logout', [MyPageController::class, 'logout'])->name('logout');
 // ユーザー情報の更新
 Route::post('/mypage/update', [MyPageController::class, 'update'])->name('update');
+// アカウント削除
+Route::delete('/mypage/delete', [MyPageController::class, 'delete'])->name('delete');
 
 // 登録情報修正の表示
 Route::get('/profile-update', [UserUpdateController::class, 'create'])->middleware('auth')->name('profileUpdate');
 Route::Post('profileUpdate/update', [UserUpdateController::class, 'update'])->name('profileUpdate.update');
 
 // ログイン
-Route::get('/login', [LoginController::class, 'create']);
+Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.login');
 
 // ゲストログイン
