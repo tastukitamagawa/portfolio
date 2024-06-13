@@ -100,7 +100,9 @@ xhr.onreadystatechange = () =>{
                     // 音声の再生
                     wordVoice.addEventListener('canplay', () => {
                         if(isPlaying) {
-                            wordVoice.play();
+                            wordVoice.play().catch(() => {
+                                return window.location.href = '/';
+                            });
                         }
                     }, {once: true});
                     wordVoice.addEventListener('ended', () => {
