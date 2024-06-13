@@ -14,7 +14,11 @@ class WordsController extends Controller
             $amount = $request->input('amount') ? (int)$request->input('amount') : Dictionary::where("user_id", auth()->id())->count();
             session(['limitAmount' => $amount]);
             $word = Dictionary::where("user_id", auth()->id())->with('word')->orderBy('created_at')->first();
-            return view('words', compact('word'));
+            if($word){
+                return view('words', compact('word'));
+            } else{
+                return redirect()->route('wordsRegister');
+            }
         } catch(\Exception $e){
             Log::error('Error updating word: ' . $e->getMessage());
         }
