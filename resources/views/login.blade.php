@@ -14,23 +14,23 @@
         <form action="{{route('login.login')}}" method="POST" class="login-form">
             @csrf
             <label class="login-form__input-wrap" for="">
-                <span class="login-form__input-text">メールアドレス</span>
+                <span class="login-form__input-text text--ja">メールアドレス</span>
                 <input class="login-form__input input" type="email" name="email" id="" placeholder="example@example.com" value="{{old('email')}}">
             </label>
             <label class="login-form__input-wrap" for="">
-                <span class="login-form__input-text">パスワード</span>
+                <span class="login-form__input-text text--ja">パスワード</span>
                 <input class="login-form__input input" type="password" name="password" id="" placeholder="パスワード">      
             </label>
 
             <div class="login-form__button-area form-button-area">
-                <button class="login-form__button button" type="submit">ログインする</button>
-                <a href="{{"register"}}" class="login-form__button button border-button">新規登録</a>
+                <button class="login-form__button button text--ja" type="submit">ログインする</button>
+                <a href="{{"register"}}" class="login-form__button button border-button text--ja">新規登録</a>
             </div>
         </form>
 
         <form class="guest-login" action="{{route('guestLogin')}}" method="POST">
             @csrf
-            <button class="guest-login__button button" type="submit">ゲストとしてログインする</button>
+            <button class="guest-login__button button text--ja" type="submit">ゲストとしてログインする</button>
         </form>
     </div>
 @endsection
