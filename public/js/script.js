@@ -172,6 +172,10 @@ window.addEventListener('load', () => {
         navButton.classList.remove('is-current');
         if(urlPath === currentPage){
             navButton.classList.add('is-current');
+        } else if(urlPath === 'words'){
+            document.querySelector('[data-page="top"]').classList.add('is-current');
+        } else if(url.indexOf('word-update') > 1){
+            document.querySelector('[data-page="words-register"]').classList.add('is-current');
         }
-    })
+    });
 });
