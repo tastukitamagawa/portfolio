@@ -10,10 +10,14 @@ use Illuminate\Support\Facades\Log;
 class WordsController extends Controller
 {
     public function create(Request $request){
-        $amount = $request->input('amount') ? (int)$request->input('amount') : Dictionary::where("user_id", auth()->id())->count();
-        session(['limitAmount' => $amount]);
-        $word = Dictionary::where("user_id", auth()->id())->with('word')->orderBy('created_at')->first();
-        return view('words', compact('word'));
+        try{
+            $amount = $request->input('amount') ? (int)$request->input('amount') : Dictionary::where("user_id", auth()->id())->count();
+            session(['limitAmount' => $amount]);
+            $word = Dictionary::where("user_id", auth()->id())->with('word')->orderBy('created_at')->first();
+            return view('words', compact('word'));
+        } catch(\Exception $e){
+            Log::error('Error updating word: ' . $e->getMessage());
+        }
     }
 
     public function getWords(){

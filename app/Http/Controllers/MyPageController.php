@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class MyPageController extends Controller
 {
@@ -15,17 +16,25 @@ class MyPageController extends Controller
     } 
 
     public function logout(Request $request){
-        Auth::logout();
-        // 現在使っているセッションの無効化
-        $request->session()->invalidate();
-        // セッション無効化を再生成する
-        $request->session()->regenerateToken();
-
-        return redirect()->route('login');
+        try{
+            Auth::logout();
+            // 現在使っているセッションの無効化
+            $request->session()->invalidate();
+            // セッション無効化を再生成する
+            $request->session()->regenerateToken();
+    
+            return redirect()->route('login');
+        } catch(\Exception $e){
+            Log::error('Error updating word: ' . $e->getMessage());
+        }
     }
 
     public function delete(){
-        User::where('id', auth()->id())->delete();
-        return redirect()->route('login');
+        try{
+            User::where('id', auth()->id())->delete();
+            return redirect()->route('login');
+        } catch(\Exception $e){
+            Log::error('Error updating word: ' . $e->getMessage());
+        }
     }
 }

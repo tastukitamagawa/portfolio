@@ -11,8 +11,12 @@ use Illuminate\Support\Facades\Route;
 class WordUpdateController extends Controller
 {
     public function create(Request $request, $word_id = null){
-        $word = Word::where('word_id', $word_id)->firstOrFail();
-        return view('/word-update', compact('word'));
+        try{
+            $word = Word::where('word_id', $word_id)->firstOrFail();
+            return view('/word-update', compact('word'));
+        } catch(\Exception $e){
+            Log::error('Error updating word: ' . $e->getMessage());
+        }
     }
     
     public function update(Request $request, $word_id = null){
