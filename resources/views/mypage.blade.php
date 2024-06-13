@@ -29,7 +29,9 @@
                 </li>
             @endif
         </ul>
-        <a href="{{route('profileUpdate')}}" class="to-profile-update-button button">ユーザー情報を更新する</a>
+        @if (isset($user) && $user->id !== 1)
+            <a href="{{route('profileUpdate')}}" class="to-profile-update-button button">ユーザー情報を更新する</a>
+        @endif
     </div>
 
     <div class="mypage-button-area">
