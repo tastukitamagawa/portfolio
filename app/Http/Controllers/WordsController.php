@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\WordsChunkDispatched;
 use App\Models\Dictionary;
 use App\Jobs\GenerateAudioFiles;
 use Illuminate\Http\Request;
@@ -37,6 +38,8 @@ class WordsController extends Controller
 
         foreach($chunks as $chunk){
             GenerateAudioFiles::dispatch($chunk)->onQueue('audio_generation');
+            // イベントは発生
+            event(new WordsChunkDispatched($chunk));
         }
 
         return response()->json($hashmap);
