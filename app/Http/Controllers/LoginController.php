@@ -20,7 +20,6 @@ class LoginController extends Controller
         ]);
 
         if($request->email === 'guest@example.com'){
-            Log::info('a');
             return redirect()->route('userLogin')->withErrors([
                 'guest-email' => 'メールアドレスまたはパスワードが正しくありません。',
             ])->onlyInput('guest-email'); 
