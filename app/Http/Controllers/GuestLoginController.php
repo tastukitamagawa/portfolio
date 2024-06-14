@@ -33,9 +33,9 @@ class GuestLoginController extends Controller
             // セッションIDの再生成
             $request->session()->regenerate();
             session()->put('guest_token', $token);
-
-            if(!$guest->expired_at > now() || !auth()->check() || session()->get('guest_token')){
-                return redirect()->route('login');
+            
+            if(!$guest->expired_at > now() || !auth()->check() || !session()->get('guest_token')){
+                return back();
             }
 
             return redirect()->route('top');
