@@ -44,6 +44,9 @@ Route::middleware(['auth'])->group(function(){
     // ログアウト
     Route::get('/mypage/logout', [MyPageController::class, 'logout'])->name('logout');
     Route::post('/mypage/logout', [MyPageController::class, 'logout'])->name('logout');
+    // ゲストログアウト
+    Route::get('/mypage/guest-logout', [MyPageController::class, 'guestLogout'])->name('guestLogout');
+    Route::delete('/mypage/guest-logout', [MyPageController::class, 'guestLogout'])->name('guestLogout');
 
     // 登録情報修正の表示
     Route::get('/profile-update', [UserUpdateController::class, 'create'])->name('profileUpdate');
