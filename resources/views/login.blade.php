@@ -8,18 +8,28 @@
         @if (session('register_success'))
             <p class="alert-message">{{session('register_success')}}</p>
         @endif
-        @if ($errors->has('email'))
-            <p class="login-error">{{$errors->first('email')}}</p>
+        @if ($errors->has('login-error'))
+            <p class="login-error">{{$errors->first('login-error')}}</p>
         @endif
-        <form action="{{route('login.login')}}" method="POST" class="login-form">
+        @if ($errors->has('guest-email'))
+            <p class="login-error">{{$errors->first('guest-email')}}</p>
+        @endif
+
+        <form action="{{route('userLogin')}}" method="POST" class="login-form">
             @csrf
             <label class="login-form__input-wrap" for="">
                 <span class="login-form__input-text text--ja">メールアドレス</span>
                 <input class="login-form__input input" type="email" name="email" id="" placeholder="example@example.com" value="{{old('email')}}">
+                @if ($errors->has('email'))
+                    <p class="error">{{$errors->first('email')}}</p>
+                @endif
             </label>
             <label class="login-form__input-wrap" for="">
                 <span class="login-form__input-text text--ja">パスワード</span>
-                <input class="login-form__input input" type="password" name="password" id="" placeholder="パスワード">      
+                <input class="login-form__input input" type="password" name="password" id="" placeholder="パスワード">    
+                @if ($errors->has('password'))
+                    <p class="error">{{$errors->first('password')}}</p>
+                @endif  
             </label>
 
             <div class="login-form__button-area form-button-area">

@@ -64,7 +64,7 @@ Route::post('/register', [UserController::class, 'store'])->name('user.store');
 
 // ログイン
 Route::get('/login', [LoginController::class, 'create'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login.login');
+Route::post('/login', [LoginController::class, 'login'])->name('userLogin');
 
 // ゲストログイン
 Route::post('/guest-login', [GuestLoginController::class, 'login'])->name('guestLogin');
