@@ -18,17 +18,13 @@ class MyPageController extends Controller
     } 
 
     public function logout(Request $request){
-        try{
-            Auth::logout();
-            // 現在使っているセッションの無効化
-            $request->session()->invalidate();
-            // セッション無効化を再生成する
-            $request->session()->regenerateToken();
-    
-            return redirect()->route('login');
-        } catch(\Exception $e){
-            Log::error('Error updating word: ' . $e->getMessage());
-        }
+        Auth::logout();
+        // 現在使っているセッションの無効化
+        $request->session()->invalidate();
+        // セッション無効化を再生成する
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
     }
 
     public function guestLogout(){
@@ -48,11 +44,12 @@ class MyPageController extends Controller
     }
 
     public function delete(){
-        try{
-            User::where('id', auth()->id())->delete();
-            return redirect()->route('login');
-        } catch(\Exception $e){
-            Log::error('Error updating word: ' . $e->getMessage());
+        $words = Dictionary::where('user_id', auth()->id())->get();
+        foreach($words as $word){
+            // 単語削除
+            Word::where('word_id', $word->word_id)->delete();
         }
+        User::where('id', auth()->id())->delete();
+        return redirect()->route('login');
     }
 }
