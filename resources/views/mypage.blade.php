@@ -13,7 +13,7 @@
                     @endif
                 </div>
             </li>
-            @if (isset($user) && $user->id !== 1)
+            @if (isset($user) && $user->role !== 'guest')
                 <li class="mypage-list__item">
                     <div class="mypage-list__item-text-area">
                         <span class="mypage-list__item-title text--ja">メールアドレス</span>
@@ -29,7 +29,7 @@
                 </li>
             @endif
         </ul>
-        @if (isset($user) && $user->id !== 1)
+        @if (isset($user) && $user->role !== 'guest')
             <a href="{{route('profileUpdate')}}" class="to-profile-update-button button text--ja">ユーザー情報を更新する</a>
         @endif
     </div>
@@ -39,7 +39,7 @@
             @csrf
             <button class="mypage-form__button button text--ja" id="logout-button" type="submit">ログアウトする</button>
         </form>
-        @if (isset($user) && $user->id !== 1)
+        @if (isset($user) && $user->role !== 'guest')
         <form action="{{route('delete')}}" class="mypage-form mypage-form-delete" method="POST">
             @csrf
             @method('DELETE')

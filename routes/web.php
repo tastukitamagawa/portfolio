@@ -10,6 +10,7 @@ use App\Http\Controllers\WordsController;
 use App\Http\Controllers\WordsListController;
 use App\Http\Controllers\WordsRegisterController;
 use App\Http\Controllers\WordUpdateController;
+use App\Http\Middleware\GuestLogin;
 
 Route::middleware(['auth'])->group(function(){
     // トップページの表示
@@ -63,8 +64,7 @@ Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.login');
 
 // ゲストログイン
-Route::get('/guest-login', [GuestLoginController::class, 'guest'])->name('guestLogin');
-Route::post('/guest-login', [GuestLoginController::class, 'guest'])->name('guestLogin');
+Route::post('/guest-login', [GuestLoginController::class, 'login'])->name('guestLogin');
 
 
 Route::fallback(function () {
