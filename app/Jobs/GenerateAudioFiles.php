@@ -26,7 +26,7 @@ class GenerateAudioFiles implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct($wordData)
+    public function __construct(array $wordData)
     {
         $this->wordData = $wordData;
     }
@@ -77,15 +77,15 @@ class GenerateAudioFiles implements ShouldQueue
                     'meaning' => $word['word']['meaning'],
                 ];
             }
-
+            
             for ($i = 0; $i < count($hashmap); $i++) {
                 $wordInput->setText($hashmap[$i]['word']);
                 $meaningInput->setText($hashmap[$i]['meaning']);
-
+                
                 // 保存するファイル
                 $wordOutputPath = $outputDir . '/word' . $hashmap[$i]['word_id'] . '.mp3';
                 $meaningOutputPath = $outputDir . '/meaning' . $hashmap[$i]['word_id'] . '.mp3';
-            
+                
                 // オプションの指定
                 $wordResponse = $wordClient->synthesizeSpeech($wordInput, $wordVoice, $wordAudioConfig);
 
