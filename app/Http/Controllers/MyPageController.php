@@ -28,19 +28,15 @@ class MyPageController extends Controller
     }
 
     public function guestLogout(){
-        try {
-            $user_id = auth()->id();
-            // ログアウトするとアカウント削除
-            User::where('id', $user_id)->delete();
-            $words = Dictionary::where('user_id', $user_id)->get();
-            foreach($words as $word){
-                // 単語削除
-                Word::where('word_id', $word->word_id)->delete();
-            }
-            return redirect()->route('login');
-        } catch (\Exception $e){
-            Log::error('Error updating word: ' . $e->getMessage());
+        $user_id = auth()->id();
+        // ログアウトするとアカウント削除
+        User::where('id', $user_id)->delete();
+        $words = Dictionary::where('user_id', $user_id)->get();
+        foreach($words as $word){
+            // 単語削除
+            Word::where('word_id', $word->word_id)->delete();
         }
+        return redirect()->route('login');
     }
 
     public function delete(){
