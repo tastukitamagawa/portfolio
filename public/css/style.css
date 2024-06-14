@@ -86,6 +86,12 @@ html{
 
 .navigation-list__icon{
     width: 30px;
+    height: 30px;
+}
+
+.navigation-list__icon > svg{
+    width: 100%;
+    height: 100%;
 }
 
 .navigation-list__icon svg{
@@ -129,7 +135,7 @@ html{
     margin-top: 20px;
 }
 
-.input-wrap:first-child{
+input[type="hidden"] + .input-wrap{
     margin-top: 0;
 }
 
@@ -160,56 +166,31 @@ html{
     padding: 3px 5px;
 }
 
-/* .modal__bg{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 100;
-    display: none;
-}
+@media screen and (max-width: 768px){
+    html{
+        font-size: 14px;
+    }
 
-.modal__bg.is--show{
-    display: block;
-}
+    .header{
+        font-size: 24px;
+    }
 
-.modal{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 600px;
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 40px;
-}
+    .navigation-list__link{
+        font-size: 16px;
+    }
 
-.modal__text{
-    text-align: center;
-    font-weight: 700;
-    font-size: 22px;
-}
+    .navigation-list__icon{
+        width: 27px;
+        height: 27px;
+    }
 
-.modal-form__label{
-    font-size: 1rem;
-    font-weight: 700;
-}
+    .container{
+        padding: 30px 0 100px;
+    }
 
-.modal-form__input-wrap + .modal-form__input-wrap{
-    margin-top: 10px;
-}
-
-.current-password-wrap + .modal-form__input-wrap{
-    margin-top: 30px;
-} */
-
-@media screen and (min-width: 768px){
-    /* .header{
-        font-size: 32px;
-    } */
+    .box{
+        padding: 20px 15px;
+    }
 }
 
 /* 単語一覧 */
@@ -252,12 +233,14 @@ html{
 .word-list-setting{
     margin: 30px 0 0 auto;
     display: flex;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
+    align-items: center;
 }
 
 .word-list-setting__input-wrap{
     display: inline-block;
     position: relative;
+    margin-right: 10px;
 }
 
 .word-list-setting__input-wrap::after{
@@ -279,6 +262,11 @@ html{
     padding: 5px 25px 5px 5px;
 }
 
+.word-list-setting__button{
+    width: auto;
+    padding: calc((10 / 16) * 1em);
+}
+
 .word-list{
     margin-top: 7px;
 }
@@ -288,10 +276,17 @@ html{
     box-shadow: 5px 5px #00b7ce;
     padding: 15px;
     margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .word:first-child{
     margin-top: 0;
+}
+
+.word-text-area{
+    margin-right: 15px;
 }
 
 .word__title{
@@ -301,6 +296,27 @@ html{
 .word__meaning{
     margin-top: 7px;
     color: #CD5C5C;
+}
+
+.word-update-link{
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.word-update-link > svg{
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 768px){
+    .word__title{
+        font-size: 18px;
+    }
+    
+    .word-update-link{
+        width: 20px;
+    }
 }
 
 /* 単語ページ */
@@ -324,10 +340,21 @@ html{
 
 .word-box__operation-icon{
     width: 45px;
+    height: 45px;
+    display: block;
+    cursor: pointer;
+}
+
+.word-box__operation-icon.is-hide{
+    display: none;
+}
+
+.word-box__operation-icon.is-show{
     display: block;
 }
 
-.word-box__operation-icon:nth-child(2){
+.word-box__operation-icon.is-stop,
+.word-box__operation-icon.is-start{
     margin: 0 40px;
 }
 
@@ -337,9 +364,30 @@ html{
     fill: #000000;
 }
 
+@media screen and (max-width: 768px){
+    .word-box__title{
+        font-size: 28px;
+    }
+
+    .word-box__meaning{
+        font-size: 16px;
+    }
+
+    .word-box__operation-icon{
+        width: 40px;
+        height: 40px;
+    }
+
+    .word-box__operation-icon.is-stop,
+    .word-box__operation-icon.is-start{
+        margin: 0 25px;
+    }
+}
+
 /* 単語登録ページ */
 .word-register-form__text{
     font-size: 1rem;
+    font-weight: 700;
 }
 
 textarea.word-register-form__input{
@@ -355,13 +403,35 @@ textarea.word-register-form__input{
     margin-top: 0;
 }
 
+.word-register-box .alert-message{
+    margin: 0 0 40px;
+}
+
+.word-update__back-button{
+    margin: 40px auto 0;
+}
+
+.word-delete-form__button{
+    margin: 20px auto 0;
+}
+
+@media screen and (max-width: 768px){
+    .word-register-form__button{
+       margin-top: 10px;
+    }
+
+    .word-register-box .alert-message{
+        margin-bottom: 25px
+    }
+}
+
 /* マイページ */
 .mypage-list__item{
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid #000000;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .mypage-list__item:first-child{
@@ -405,6 +475,12 @@ textarea.word-register-form__input{
 
 .mypage-modal-form{
     margin-top: 20px;
+}
+
+@media screen and (max-width: 768px){
+    .mypage-button-area{
+        margin-top: 40px;
+    }
 }
 
 /* 登録情報の修正 */
@@ -514,4 +590,43 @@ input[type="hidden"] + .profile-update-form__input-wrap,
 .login-error{
     border-color: red;
     color: red;
+}
+
+@media screen and (max-width: 768px){
+    .login-container__title{
+        font-size: 26px;
+    }
+
+    .alert-message,
+    .login-error{
+        padding: 15px 10px;
+    }
+}
+
+/* ページネーション */
+.pagination{
+    margin-top: 40px;
+}
+
+.pagination nav > div:first-child,
+.pagination nav > div:nth-child(2) > div:first-child{
+    display: none;
+}
+
+.pagination nav > div:nth-child(2) > div:nth-child(2) > span{
+    display: flex;
+    justify-content: center;
+}
+
+.pagination nav > div:nth-child(2) > div:nth-child(2) > span > *{
+    width: calc((24 / 18) * 1em);
+    height: calc((24 / 18) * 1em);
+    text-align: center;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 768px){
+    .pagination nav > div:nth-child(2) > div:nth-child(2) > span > *{
+        font-size: 17px;
+    }
 }

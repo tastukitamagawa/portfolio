@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class UserUpdateController extends Controller
 {
-    //
     public function create(){
         return view('profile-update'); 
     } 
@@ -25,7 +25,7 @@ class UserUpdateController extends Controller
             'password' => 'nullable|string',
             'new_password' => 'nullable|confirmed|min:8|regex:/^(?=.*[a-z])(?=.*[0-9])[a-z0-9]+$/'
         ]);
- 
+
         // 更新された情報を格納する変数
         $updatedFields = [];
         $inputFields = ['username', 'email', 'password', 'new_password', 'new_password_confirmation'];

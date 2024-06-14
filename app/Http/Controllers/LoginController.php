@@ -20,9 +20,9 @@ class LoginController extends Controller
         ]);
 
         if($request->email === 'guest@example.com'){
-            return back()->withErrors([
-                'email' => 'メールアドレスまたはパスワードが正しくありません。',
-            ])->onlyInput('email'); 
+            return redirect()->route('userLogin')->withErrors([
+                'guest-email' => 'メールアドレスまたはパスワードが正しくありません。',
+            ])->onlyInput('guest-email'); 
         }
 
         if(Auth::attempt($validation)){
@@ -36,8 +36,8 @@ class LoginController extends Controller
             return redirect('/');
         }
 
-        return back()->withErrors([
-            'email' => 'メールアドレスまたはパスワードが正しくありません。',
-        ])->onlyInput('email'); 
+        return redirect()->route('userLogin')->withErrors([
+            'login-error' => 'メールアドレスまたはパスワードが正しくありません。',
+        ])->onlyInput('login-error'); 
     }
 }
