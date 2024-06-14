@@ -30,20 +30,20 @@ class MyPageController extends Controller
     public function guestLogout(){
         $user_id = auth()->id();
         // ログアウトするとアカウント削除
-        User::where('id', $user_id)->delete();
-        $words = Dictionary::where('user_id', $user_id)->get();
-        foreach($words as $word){
+        $guest_words = Dictionary::where('user_id', $user_id)->get();
+        foreach($guest_words as $guest_word){
             // 単語削除
-            Word::where('word_id', $word->word_id)->delete();
+            Word::where('word_id', $guest_word->word_id)->delete();
         }
+        User::where('id', $user_id)->delete();
         return redirect()->route('login');
     }
 
     public function delete(){
-        $words = Dictionary::where('user_id', auth()->id())->get();
-        foreach($words as $word){
+        $user_words = Dictionary::where('user_id', auth()->id())->get();
+        foreach($user_words as $user_word){
             // 単語削除
-            Word::where('word_id', $word->word_id)->delete();
+            Word::where('word_id', $user_word->word_id)->delete();
         }
         User::where('id', auth()->id())->delete();
         return redirect()->route('login');
