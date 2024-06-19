@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->timestamp('updated_at');
-            $table->timestamp('created_at');
+            $table->timestamp('updated_at')->useCurrent()->nullable(false);
+            $table->timestamp('created_at')->useCurrent()->nullable(false);
         });
     }
 
