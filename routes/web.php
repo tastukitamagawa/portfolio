@@ -19,10 +19,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/words-limit', [WordsListController::class, 'create'])->name('listLimit');
     
     // 単語ページの表示
-    Route::get('/words', [WordsController::class, 'create'])->name('words');
+    // Route::get('/words', [WordsController::class, 'create'])->name('words');
     Route::post('/words', [WordsController::class, 'create'])->name('words');
     // 音声ファイルの作成とjsonデータの作成
-    Route::get('/get-words', [WordsController::class, 'getWords']);
+    // Route::get('/get-words', [WordsController::class, 'getWords']);
     Route::post('/get-words', [WordsController::class, 'getWords']);
     
     // 単語登録ページの表示
