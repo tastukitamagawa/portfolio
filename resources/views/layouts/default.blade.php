@@ -15,8 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     {{-- Style --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@3.0.2/destyle.css">
-    {{-- <link rel="stylesheet" href="{{secure_asset('/css/style.css')}}"> --}}
 </head>
 <body>
     <header class="header">
