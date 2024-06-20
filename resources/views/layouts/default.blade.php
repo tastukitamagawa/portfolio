@@ -16,7 +16,7 @@
 
     {{-- Style --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@3.0.2/destyle.css">
-    <link rel="stylesheet" href="{{asset('/css/style.css', true)}}">
+    <link rel="stylesheet" href="{{asset('/css/style2.css', true)}}">
 </head>
 <body>
     <header class="header">
