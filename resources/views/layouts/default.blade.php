@@ -16,7 +16,7 @@
 
     {{-- Style --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@3.0.2/destyle.css">
-    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('/css/style.css')}}">
 </head>
 <body>
     <header class="header">
@@ -54,6 +54,6 @@
         </nav>
     </main>
 
-    <script src="{{asset('/js/script.js')}}"></script>
+    <script src="{{secure_asset('/js/script.js')}}"></script>
 </body>
 </html>
