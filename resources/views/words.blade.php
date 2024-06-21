@@ -6,7 +6,7 @@
     <div class="word-box box">
         <h2 class="word-box__title" id="word">{{$word->word->word}}</h2>
         <p class="word-box__meaning" id="meaning">{{$word->word->meaning}}</p>
-        <audio class="voice" id="word-voice" controls>
+        <audio class="voice" id="word-voice">
             <source src="{{asset('storage/voice/word'.$word->word->word_id.'.mp3', true)}}" type="audio/mpeg">
         </audio>
         <audio class="voice" id="meaning-voice">
