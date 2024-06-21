@@ -206,6 +206,7 @@ input[type="hidden"] + .input-wrap{
 .dictionary-form__word-amount{
     display: flex;
     flex-direction: column;
+    margin-right: 15px;
 }
 
 .dictionary-form__input-wrap{
@@ -220,6 +221,7 @@ input[type="hidden"] + .input-wrap{
     padding: calc((5 / 16) * 1em);
     margin-right: 5px;
     text-align: right;
+    width: 100%;
 }
 
 .dictionary-form__button{
@@ -228,6 +230,7 @@ input[type="hidden"] + .input-wrap{
     padding: 7px 10px;
     background-color: #00b7ce;
     color: #ffffff;
+    flex-shrink: 0;
 }
 
 .word-list-setting{
