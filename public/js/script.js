@@ -48,7 +48,7 @@ xhr.onreadystatechange = () =>{
                     // パスの取得
                     let voicePath = src.substring(0, voiceIndex + 1);
 
-                    return voicePath
+                    return voicePath;
                 }
                 let wordVoicePath = getPath(wordVoiceSrc);
                 let meaningVoicePath = getPath(meaningVoiceSrc);
@@ -107,14 +107,14 @@ xhr.onreadystatechange = () =>{
                     }, {once: true});
                     wordVoice.addEventListener('ended', () => {
                         // 音声が再生されていない場合、終了する
-                        if(!isPlaying) return;
+                        // if(!isPlaying) return;
                         setTimeout(() => {
                             meaningVoice.play();
                         }, 1500);
                     }, {once: true});
                     meaningVoice.addEventListener('ended', () => {
                         // 音声が再生されていない場合、終了する
-                        if(!isPlaying) return;
+                        // if(!isPlaying) return;
                         setTimeout(() => {
                             if(!isWOrdOperation){
                                 wordsCount++;
