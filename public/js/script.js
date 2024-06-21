@@ -34,9 +34,6 @@ xhr.onreadystatechange = () =>{
     if(xhr.readyState === 4){
         if(xhr.status >= 200 && xhr.status < 300){
             let wordsData = JSON.parse(xhr.responseText);
-            console.log(xhr.readyState);
-            console.log(xhr.status);
-            console.log(wordsData);
             if(pathname === '/words'){
                 let wordsCount = 0;
                 const wordVoiceChild = wordVoice.firstElementChild;
@@ -151,6 +148,7 @@ xhr.onreadystatechange = () =>{
                 voiceOperation(voiceStartButton);
                 
                 setTimeout(() => {
+                    console.log(displayAndPlayWord());
                     displayAndPlayWord();
                 }, 1500)
             }
