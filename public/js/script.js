@@ -71,6 +71,8 @@ xhr.onreadystatechange = () =>{
                     // 音声の読み込み
                     wordVoice.load();
                     meaningVoice.load();
+
+                    console.log(wordVoice.load());
                                 
                     // ボタンのスタイル変更
                     if(wordsCount <= 0){
@@ -97,6 +99,7 @@ xhr.onreadystatechange = () =>{
                     wordVoiceChild.src  = wordVoicePath + 'word' + wordsData[wordsCount]['word_id'] + '.mp3';
                     meaningVoiceChild.src  = meaningVoicePath + 'meaning' + wordsData[wordsCount]['word_id'] + '.mp3';
                     
+                    console.log(isPlaying);
                     // 音声の再生
                     wordVoice.addEventListener('canplay', () => {
                         if(isPlaying) {
@@ -148,7 +151,6 @@ xhr.onreadystatechange = () =>{
                 voiceOperation(voiceStartButton);
                 
                 setTimeout(() => {
-                    console.log('a');
                     displayAndPlayWord();
                 }, 1500)
             }
