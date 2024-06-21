@@ -148,7 +148,7 @@ xhr.onreadystatechange = () =>{
                 voiceOperation(voiceStartButton);
                 
                 setTimeout(() => {
-                    console.log(displayAndPlayWord());
+                    console.log('a');
                     displayAndPlayWord();
                 }, 1500)
             }
