@@ -107,14 +107,14 @@ xhr.onreadystatechange = () =>{
                     }, {once: true});
                     wordVoice.addEventListener('ended', () => {
                         // 音声が再生されていない場合、終了する
-                        // if(!isPlaying) return;
+                        if(!isPlaying) return;
                         setTimeout(() => {
                             meaningVoice.play();
                         }, 1500);
                     }, {once: true});
                     meaningVoice.addEventListener('ended', () => {
                         // 音声が再生されていない場合、終了する
-                        // if(!isPlaying) return;
+                        if(!isPlaying) return;
                         setTimeout(() => {
                             if(!isWOrdOperation){
                                 wordsCount++;
@@ -147,9 +147,9 @@ xhr.onreadystatechange = () =>{
                 voiceOperation(voiceStopButton);
                 voiceOperation(voiceStartButton);
                 
-                setTimeout(() => {
+                voiceStartButton.addEventListener('click', function(){
                     displayAndPlayWord();
-                }, 1500)
+                })
             }
         } 
     }

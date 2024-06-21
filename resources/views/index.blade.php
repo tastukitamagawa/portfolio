@@ -11,7 +11,7 @@
                 <input class="dictionary-form__word-amount-input" type="text" inputmode="numeric" name="amount" pattern="\d*" value="{{old('amount')}}">個
             </span>
         </div>
-        <button class="dictionary-form__button text--ja" type="submit">再生する</button>
+        <button class="dictionary-form__button text--ja" type="submit">開始する</button>
     </form>
 
     <form class="word-list-setting" action="{{secure_url(route('listLimit'))}}" method="GET">
