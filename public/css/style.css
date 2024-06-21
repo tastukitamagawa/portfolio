@@ -367,6 +367,13 @@ input[type="hidden"] + .input-wrap{
     fill: #000000;
 }
 
+.notice-message{
+    text-align: center;
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
 @media screen and (max-width: 768px){
     .word-box__title{
         font-size: 28px;
