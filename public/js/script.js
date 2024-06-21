@@ -1,5 +1,6 @@
 // URL
 const url = location.href;
+console.log(url);
 // pathname
 const pathname = location.pathname;
 // word
