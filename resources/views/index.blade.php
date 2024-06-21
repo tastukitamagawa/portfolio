@@ -3,7 +3,7 @@
 @section('title', 'P.E.Dictionary')
 
 @section('content')
-    <form class="dictionary-form" action="{{route('words')}}" method="POST">
+    <form class="dictionary-form" action="{{secure_url(route('words'))}}" method="POST">
         @csrf
         <div class="dictionary-form__word-amount">
             <span class="text text--ja">再生する単語数</span>
@@ -14,7 +14,7 @@
         <button class="dictionary-form__button text--ja" type="submit">再生する</button>
     </form>
 
-    <form class="word-list-setting" action="{{route('listLimit')}}" method="GET">
+    <form class="word-list-setting" action="{{secure_url(route('listLimit'))}}" method="GET">
         <div class="word-list-setting__input-wrap">
             <select class="word-list-setting__input" name="limit" id="">
                 <option value="10" {{$limit == 10 ? 'selected' : ''}}>10</option>

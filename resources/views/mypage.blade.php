@@ -36,19 +36,19 @@
 
     <div class="mypage-button-area">
         @if (isset($user) && $user->role !== 'guest')
-            <form action="{{route('logout')}}" class="mypage-form mypage-form-logout" method="POST">
+            <form action="{{secure_url(route('logout'))}}" class="mypage-form mypage-form-logout" method="POST">
                 @csrf
                 <button class="mypage-form__button button text--ja" id="logout-button" type="submit">ログアウトする</button>
             </form>
         @else
-            <form action="{{route('guestLogout')}}" class="mypage-form mypage-form-logout" method="POST">
+            <form action="{{secure_url(route('guestLogout'))}}" class="mypage-form mypage-form-logout" method="POST">
                 @csrf
                 @method('DELETE')
                 <button class="mypage-form__button button text--ja" id="logout-button" type="submit">ログアウトする</button>
             </form>
         @endif
         @if (isset($user) && $user->role !== 'guest')
-        <form action="{{route('delete')}}" class="mypage-form mypage-form-delete" method="POST">
+        <form action="{{secure_url(route('delete'))}}" class="mypage-form mypage-form-delete" method="POST">
             @csrf
             @method('DELETE')
             <button class="mypage-form__button button border-button text--ja" type="submit">削除する</button>

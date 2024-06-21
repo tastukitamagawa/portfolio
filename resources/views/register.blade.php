@@ -5,7 +5,7 @@
 @section('content')
     <div class="login-container">
         <h2 class="login-container__title text--ja">新規登録</h2>
-        <form action="{{route('user.store')}}" method="post" class="login-form">
+        <form action="{{secure_url(route('user.store'))}}" method="post" class="login-form">
             @csrf
             <label class="login-form__input-wrap" for="name">
                 <div class="login-form__input-wrap--top">

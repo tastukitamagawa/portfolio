@@ -15,7 +15,7 @@
             </div>
         @endif
 
-        <form action="{{route("profileUpdate.update")}}" class="profile-update-form" method="POST">
+        <form action="{{secure_url(route("profileUpdate.update"))}}" class="profile-update-form" method="POST">
             @csrf
             <div class="profile-update-form__input-wrap input-wrap">
                 <label for="name">
