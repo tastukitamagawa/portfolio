@@ -7,7 +7,7 @@
         @if (session('word_register_success'))
             <p class="alert-message">{{session('word_register_success')}}</p>
         @endif
-        <form action="{{route('wordsAdd')}}" class="word-register-form" method="GET">
+        <form action="{{secure_url(route('wordsAdd'))}}" class="word-register-form" method="GET">
             @csrf
             <div class="word-register-form__input-wrap input-wrap">
                 <label for="word">

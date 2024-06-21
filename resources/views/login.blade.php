@@ -15,7 +15,7 @@
             <p class="login-error">{{$errors->first('guest-email')}}</p>
         @endif
 
-        <form action="{{route('userLogin')}}" method="POST" class="login-form">
+        <form action="{{secure_url(route('userLogin'))}}" method="POST" class="login-form">
             @csrf
             <label class="login-form__input-wrap" for="">
                 <span class="login-form__input-text text--ja">メールアドレス</span>
@@ -38,7 +38,7 @@
             </div>
         </form>
 
-        <form class="guest-login" action="{{route('guestLogin')}}" method="POST">
+        <form class="guest-login" action="{{secure_url(route('guestLogin'))}}" method="POST">
             @csrf
             <button class="guest-login__button button text--ja" type="submit">ゲストとしてログインする</button>
         </form>
