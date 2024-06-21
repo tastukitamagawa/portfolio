@@ -101,7 +101,7 @@ xhr.onreadystatechange = () =>{
                     wordVoice.addEventListener('canplay', () => {
                         if(isPlaying) {
                             wordVoice.play().catch(() => {
-                                // return window.location.href = '/';
+                                return window.location.href = '/';
                             });
                         }
                     }, {once: true});
