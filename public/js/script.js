@@ -71,8 +71,6 @@ xhr.onreadystatechange = () =>{
                     // 音声の読み込み
                     wordVoice.load();
                     meaningVoice.load();
-
-                    console.log(wordVoice.load());
                                 
                     // ボタンのスタイル変更
                     if(wordsCount <= 0){
@@ -99,7 +97,7 @@ xhr.onreadystatechange = () =>{
                     wordVoiceChild.src  = wordVoicePath + 'word' + wordsData[wordsCount]['word_id'] + '.mp3';
                     meaningVoiceChild.src  = meaningVoicePath + 'meaning' + wordsData[wordsCount]['word_id'] + '.mp3';
                     
-                    console.log(isPlaying);
+                    console.log(wordVoiceChild.src);
                     // 音声の再生
                     wordVoice.addEventListener('canplay', () => {
                         if(isPlaying) {
