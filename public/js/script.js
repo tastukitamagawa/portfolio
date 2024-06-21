@@ -52,7 +52,6 @@ xhr.onreadystatechange = () =>{
                 }
                 let wordVoicePath = getPath(wordVoiceSrc);
                 let meaningVoicePath = getPath(meaningVoiceSrc);
-                console.log(wordVoicePath);
                 
                 // 音声制御
                 let isPlaying = true;
@@ -98,7 +97,6 @@ xhr.onreadystatechange = () =>{
                     wordVoiceChild.src  = wordVoicePath + 'word' + wordsData[wordsCount]['word_id'] + '.mp3';
                     meaningVoiceChild.src  = meaningVoicePath + 'meaning' + wordsData[wordsCount]['word_id'] + '.mp3';
                     
-                    console.log(wordVoiceChild.src);
                     // 音声の再生
                     wordVoice.addEventListener('canplay', () => {
                         if(isPlaying) {
