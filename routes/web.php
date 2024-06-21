@@ -19,10 +19,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/words-limit', [WordsListController::class, 'create'])->name('listLimit');
     
     // 単語ページの表示
-    // Route::get('/words', [WordsController::class, 'create'])->name('words');
     Route::post('/words', [WordsController::class, 'create'])->name('words');
     // 音声ファイルの作成とjsonデータの作成
-    // Route::get('/get-words', [WordsController::class, 'getWords']);
     Route::post('/get-words', [WordsController::class, 'getWords']);
     
     // 単語登録ページの表示
@@ -33,28 +31,22 @@ Route::middleware(['auth'])->group(function(){
     // 単語更新ページの表示
     Route::get('/word-update/{word_id}', [WordUpdateController::class, 'create'])->name('wordUpdate');
     // 単語更新
-    // Route::get('/word-update/{word_id}/edit', [WordUpdateController::class, 'update'])->name('wordEdit');
     Route::patch('/word-update/{word_id}/edit', [WordUpdateController::class, 'update'])->name('wordEdit');
     // 単語削除
-    // Route::get('/word-update/{word_id}/delete/', [WordUpdateController::class, 'delete'])->name('wordDelete');
     Route::delete('/word-update/{word_id}/delete/', [WordUpdateController::class, 'delete'])->name('wordDelete');
 
     // マイページの表示
     Route::get('/mypage', [MyPageController::class, 'create'])->name('myPage');
     // ログアウト
-    // Route::get('/mypage/logout', [MyPageController::class, 'logout'])->name('logout');
     Route::post('/mypage/logout', [MyPageController::class, 'logout'])->name('logout');
     // ゲストログアウト
-    // Route::get('/mypage/guest-logout', [MyPageController::class, 'guestLogout'])->name('guestLogout');
     Route::delete('/mypage/guest-logout', [MyPageController::class, 'guestLogout'])->name('guestLogout');
 
     // 登録情報修正の表示
     Route::get('/profile-update', [UserUpdateController::class, 'create'])->name('profileUpdate');
-    // Route::get('/profile-update/update', [UserUpdateController::class, 'update'])->name('profileUpdate.update');
     Route::Post('/profile-update/update', [UserUpdateController::class, 'update'])->name('profileUpdate.update');
 
     // アカウント削除
-    // Route::get('/mypage/delete', [MyPageController::class, 'delete'])->name('delete');
     Route::delete('/mypage/delete', [MyPageController::class, 'delete'])->name('delete');
 });
 
