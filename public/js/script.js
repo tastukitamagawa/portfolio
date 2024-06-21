@@ -52,6 +52,7 @@ xhr.onreadystatechange = () =>{
                 }
                 let wordVoicePath = getPath(wordVoiceSrc);
                 let meaningVoicePath = getPath(meaningVoiceSrc);
+                console.log(wordVoicePath);
                 
                 // 音声制御
                 let isPlaying = true;
