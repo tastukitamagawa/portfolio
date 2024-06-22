@@ -133,11 +133,13 @@ xhr.onreadystatechange = () =>{
                         this.classList.add('is-hide');
                         this.classList.remove('is-show');
                         if(button === voiceStopButton){
+                            // 停止する
                             voiceStartButton.classList.add('is-show');
                             isPlaying = false;
                             wordVoice.pause();
                             meaningVoice.pause();
                         } else if(button === voiceStartButton){
+                            // 再生する
                             voiceStopButton.classList.add('is-show');
                             isPlaying = true;
                             displayAndPlayWord();
@@ -146,10 +148,6 @@ xhr.onreadystatechange = () =>{
                 }
                 voiceOperation(voiceStopButton);
                 voiceOperation(voiceStartButton);
-                
-                voiceStartButton.addEventListener('click', function(){
-                    displayAndPlayWord();
-                })
             }
         } 
     }
