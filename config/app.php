@@ -131,6 +131,6 @@ return [
     |
     */
     'assets_version_css' => '1.0.2', // バージョン番号（CSS用）
-    'assets_version_js'  => '1.0.3', // バージョン番号（JS用）
+    'assets_version_js'  => '1.0.4', // バージョン番号（JS用）
 
 ];
